@@ -1,16 +1,15 @@
 {
-  "name": "yib",
+  "name": "vues",
   "version": "1.0.0",
   "description": "",
-  "private": true,
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {
-    "pnpm": "8.15.6",
-    "node": "20.12.1"
-  },
   "keywords": [],
-  "author": "JSen",
-  "license": "ISC"
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.4.34"
+  }
 }
