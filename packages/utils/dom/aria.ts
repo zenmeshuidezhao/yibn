@@ -42,3 +42,51 @@ export const isFocusable = (element: HTMLElement): boolean => {
         }
     }
 }
+
+export const attemptFocus = (element: HTMLElement): boolean => {
+    if (!isFocusable(element)) {
+        return false;
+    }
+
+    element.focus?.();
+
+    return document.activeElement === element;
+}
+
+export const triggerEvent = function (elm: HTMLElement, name: string, ...opts: Array<boolean>): HTMLElement {
+    let eventName: string;
+
+    if (name.includes('mouse') || name.includes('click')) {
+        eventName = 'MouseEvents';
+    } else if (name.includes('key')) {
+        eventName = 'KeyboardEvent';
+    } else {
+        eventName = 'HTMLEvents';
+    }
+
+    const evt = document.createEvent(eventName);
+
+    evt.initEvent(name, ...opts);
+    elm.dispatchEvent(evt);
+
+    return elm;
+}
+
+export const isLeaf = (el: HTMLElement) => !el.getAttribute('aria-owns');
+
+export const getSibling = (el: HTMLElement, distance: number, elClass: string) => {
+    const { parentNode } = el;
+
+    if (!parentNode) return null;
+
+    const siblings = parentNode.querySelectorAll(elClass);
+    const index = Array.prototype.indexOf.call(siblings, el);
+
+    return siblings[index + distance] || null;
+}
+
+export const focusNode = (el: HTMLElement) => {
+    if (!el) return;
+    el.focus();
+    !isLeaf(el) && el.click();
+}
