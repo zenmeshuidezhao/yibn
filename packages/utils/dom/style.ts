@@ -1,0 +1,1 @@
+import { isNumber, isObject, isString, isStringNumber } from '../types';

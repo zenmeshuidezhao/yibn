@@ -1,4 +1,3 @@
-import { off } from 'process';
 import { isClient } from '../browser';
 
 export const isInContainer = (el?: Element, container?: Element | Window): boolean => {
